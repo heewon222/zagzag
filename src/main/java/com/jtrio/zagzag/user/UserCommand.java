@@ -39,8 +39,8 @@ public class UserCommand {
         private String name;
         private Gender gender;
 
-        public User updateUser(){
-            User user = new User();
+        public User toUser(User user){
+
             user.setName(name);
             user.setAddress(address);
             user.setGender(gender);

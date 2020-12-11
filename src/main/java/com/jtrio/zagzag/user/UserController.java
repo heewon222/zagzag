@@ -16,7 +16,7 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
+   @PostMapping
     public ResponseEntity<UserDto> join(@Valid @RequestBody UserCommand.CreateUser user) {
         try {
             userService.join(user);

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserDto join(UserCommand.CreateUser command) {
+   public UserDto join(UserCommand.CreateUser command) {
         if (userRepository.existsByEmail(command.getEmail())) {
             throw new EmailDuplicationException("이메일 중복");
         }
@@ -23,7 +23,7 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() ->
                 new UserNotFoundException("유저없음"));//찾으면 user, 아니면 예외 throw
 
-         userRepository.save(command.updateUser()); //위에서 user에 save가되는가??
+        user = userRepository.save(command.toUser(user));
 
         return user.toDto();
     }
