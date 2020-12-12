@@ -17,23 +17,12 @@ public class UserController {
     private final UserService userService;
 
    @PostMapping
-    public ResponseEntity<UserDto> join(@Valid @RequestBody UserCommand.CreateUser user) {
-        try {
-            userService.join(user);
-        } catch (EmailDuplicationException e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
+    public UserDto join(@Valid @RequestBody UserCommand.CreateUser user) {
+        return userService.join(user);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserCommand.UpdateUser user){
-        try{
-            userService.update(user,id);
-        } catch (UserNotFoundException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
+    public UserDto update(@PathVariable Long id, @RequestBody UserCommand.UpdateUser user){
+        return userService.update(user,id);
     }
 }
