@@ -28,11 +28,12 @@ public class UserCommand {
             user.setAddress(address);
             user.setGender(gender);
             user.setName(name);
+            user.setPassword(password);
 
             return user;
         }
 
-        }
+    }
         @Data
     public static class UpdateUser{  //이너클래스,정보수정
         private String address;

@@ -1,5 +1,7 @@
 package com.jtrio.zagzag.model;
 
+import com.jtrio.zagzag.review.ReviewDto;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -9,12 +11,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Data
 @EntityListeners(value = {AuditingEntityListener.class})//하이버네이트가 자동으로 채워줌
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String content;
+    private String contents;
     private String image;
     private byte productScore;
     private byte deliveryScore;
@@ -34,4 +37,17 @@ public class Review {
     private LocalDateTime created;
     @LastModifiedDate
     private LocalDateTime updated;
+
+    public ReviewDto toDto(){
+        ReviewDto reviewDto=new ReviewDto();
+        reviewDto.setContents(contents);
+        reviewDto.setImage(image);
+        reviewDto.setUser(user);
+        reviewDto.setProduct(product);
+        reviewDto.setDeliveryScore(deliveryScore);
+        reviewDto.setProductScore(productScore);
+
+        return reviewDto;
+
+    }
 }
