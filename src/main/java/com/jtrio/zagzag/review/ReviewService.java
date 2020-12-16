@@ -1,5 +1,6 @@
 package com.jtrio.zagzag.review;
 
+import com.jtrio.zagzag.execption.OrderProductNotFoundException;
 import com.jtrio.zagzag.execption.ProductNotFoundException;
 import com.jtrio.zagzag.execption.UserNotFoundException;
 import com.jtrio.zagzag.model.Product;
@@ -24,15 +25,13 @@ public class ReviewService {
 
 
     @Transactional
-    public ReviewDto createReview(ReviewCommand.CreateReview command, Long userId){
-        ProductOrder checkUser = orderRepository.findById(userId).orElseThrow(()->
-                new UserNotFoundException("User 없음")); //상품산사람 조회...????
-        User user = userRepository.findById(userId).orElseThrow(()->
+    public ReviewDto createReview(ReviewCommand.CreateReview command, Long userId, Long orderId) {
+        ProductOrder productOrder = orderRepository.findById(orderId).orElseThrow(() ->
+                new OrderProductNotFoundException("주문상품 없음"));
+        User user = userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("회원 아님"));
-        Product product = productRepository.findById(command.getProductId()).orElseThrow(()->
-                new ProductNotFoundException("상품정보 없음"));
 
-        Review review = reviewRepository.save(command.toReview(user,product));
+        Review review = reviewRepository.save(command.toReview(user, productOrder));
 
         return review.toDto();
     }

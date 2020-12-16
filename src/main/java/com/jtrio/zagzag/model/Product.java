@@ -30,13 +30,13 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public ProductDto toDto(){
+    public ProductDto toDto() {
         ProductDto productDto = new ProductDto();
         productDto.setName(name);
         productDto.setPrice(price);
         productDto.setImage(image);
         productDto.setDescription(description);
-        productDto.setCategory(category);
+        productDto.setCategoryId(category.getId());
 
         return productDto;
     }

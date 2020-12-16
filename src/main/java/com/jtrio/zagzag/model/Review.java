@@ -23,27 +23,32 @@ public class Review {
     private byte deliveryScore;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToMany
     private List<User> likers;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private ProductOrder productOrder;
 
     @CreatedDate
     private LocalDateTime created;
     @LastModifiedDate
     private LocalDateTime updated;
 
-    public ReviewDto toDto(){
-        ReviewDto reviewDto=new ReviewDto();
+    public ReviewDto toDto() {
+        ReviewDto reviewDto = new ReviewDto();
+        reviewDto.setOrderId(productOrder.getId());
+        reviewDto.setUserId(user.getId());
+        reviewDto.setProductId(product.getId());
         reviewDto.setContents(contents);
         reviewDto.setImage(image);
-        reviewDto.setUser(user);
-        reviewDto.setProduct(product);
         reviewDto.setDeliveryScore(deliveryScore);
         reviewDto.setProductScore(productScore);
 

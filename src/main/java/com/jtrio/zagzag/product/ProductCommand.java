@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class ProductCommand {
     @Data
-    public static class CreateProduct{
+    public static class CreateProduct {
         @NotBlank
         private String name;
         @NotBlank
@@ -21,7 +21,7 @@ public class ProductCommand {
         private Long categoryID;
 
 
-        public Product toProduct(Category category){
+        public Product toProduct(Category category) {
             Product product = new Product();
 
             product.setName(name);

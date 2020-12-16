@@ -25,18 +25,20 @@ public class ProductOrder {
     private LocalDateTime updated;
 
     @ManyToOne
-    @JoinColumn(name="product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    public OrderDto toDto(){
-        OrderDto orderDto=new OrderDto();
+    public OrderDto toDto() {
+        OrderDto orderDto = new OrderDto();
         orderDto.setOrderPrice(price);
         orderDto.setProductName(productName);
         orderDto.setAddress(address);
+        orderDto.setProductId(product.getId());
+        orderDto.setUserId(user.getId());
 
         return orderDto;
     }

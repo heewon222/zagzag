@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 public class OrderCommand {
-    private Long productID;
+    private Long productId;
 
 
-    public ProductOrder toOrder(Product product,User user){
+    public ProductOrder toOrder(Product product, User user) {
         ProductOrder productOrder = new ProductOrder();
         productOrder.setPrice(product.getPrice());
         productOrder.setUser(user);

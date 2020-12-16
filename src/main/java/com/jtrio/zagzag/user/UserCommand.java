@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class UserCommand {
     @Data
-    public static class CreateUser{ //이너클래스,생성
+    public static class CreateUser { //이너클래스,생성
         @NotBlank
         private String name;
         @NotBlank
@@ -22,7 +22,7 @@ public class UserCommand {
         @NotBlank
         private Gender gender;
 
-        public User toUser(){
+        public User toUser() {
             User user = new User();
             user.setEmail(email);
             user.setAddress(address);
@@ -34,13 +34,14 @@ public class UserCommand {
         }
 
     }
-        @Data
-    public static class UpdateUser{  //이너클래스,정보수정
+
+    @Data
+    public static class UpdateUser {  //이너클래스,정보수정
         private String address;
         private String name;
         private Gender gender;
 
-        public User toUser(User user){
+        public User toUser(User user) {
 
             user.setName(name);
             user.setAddress(address);

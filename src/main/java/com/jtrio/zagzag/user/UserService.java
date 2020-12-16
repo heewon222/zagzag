@@ -5,19 +5,21 @@ import com.jtrio.zagzag.execption.UserNotFoundException;
 import com.jtrio.zagzag.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 @RequiredArgsConstructor
 @Service
-class UserService {
+public class UserService {
     private final UserRepository userRepository;
 
-   public UserDto join(UserCommand.CreateUser command) {
+    public UserDto join(UserCommand.CreateUser command) {
         if (userRepository.existsByEmail(command.getEmail())) {
             throw new EmailDuplicationException("email 중복");
         }
-        User user=userRepository.save(command.toUser());
+        User user = userRepository.save(command.toUser());
         return user.toDto();
     }
-    public UserDto update(UserCommand.UpdateUser command,Long id){
+
+    public UserDto update(UserCommand.UpdateUser command, Long id) {
         User user = userRepository.findById(id).orElseThrow(() ->
                 new UserNotFoundException("User 없음"));//찾으면 user, 아니면 예외 throw
 

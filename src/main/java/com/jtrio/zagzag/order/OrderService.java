@@ -19,12 +19,12 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
 
-    public OrderDto createOrder(OrderCommand command,Long userID){
-        Product orderProduct=productRepository.findById(command.getProductID()).orElseThrow(()->
+    public OrderDto createOrder(OrderCommand command, Long userId) {
+        Product orderProduct = productRepository.findById(command.getProductId()).orElseThrow(() ->
                 new OrderProductNotFoundException("주문상품 없음"));
-        User user=userRepository.findById(userID).orElseThrow(()->
+        User user = userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("회원정보 없음"));
-        ProductOrder productOrder=orderRepository.save(command.toOrder(orderProduct,user));
+        ProductOrder productOrder = orderRepository.save(command.toOrder(orderProduct, user));
         return productOrder.toDto();
 
     }

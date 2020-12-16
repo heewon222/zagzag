@@ -21,11 +21,11 @@ public class Comment {
     private LocalDateTime updated;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="qna_id")
+    @JoinColumn(name = "qna_id")
     private Qna qna;
 
 }
