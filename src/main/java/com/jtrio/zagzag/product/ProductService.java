@@ -7,6 +7,8 @@ import com.jtrio.zagzag.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @Service
@@ -23,11 +25,10 @@ public class ProductService {
     }
 
     //카테고리별 조회
-   /* public List<Product> inquiryByCategory(Long categoryID){
-        List<Product> product = productRepository.findByCategoryId(categoryID);
+    public List<Product> inquiryByCategory(Long categoryID) {
 
-        return product;
-    }*/
+        return productRepository.findByCategoryId(categoryID);
+    }
 
 
 }

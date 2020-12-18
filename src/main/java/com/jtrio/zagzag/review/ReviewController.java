@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Controller
-@RequestMapping
+@RestController
+@RequestMapping("review")
 @RequiredArgsConstructor
 public class ReviewController {
     private final ReviewService reviewService;
 
-    @PostMapping("/user/{id}")
-    public ReviewDto createReview(@Valid @RequestBody ReviewCommand.CreateReview command, @RequestParam Long userId, @RequestParam Long orderId) {
+    @PostMapping
+    public ReviewDto createReview(@Valid @RequestBody ReviewCommand.CreateReview command, @RequestParam Long userId, @RequestBody Long orderId) {
         return reviewService.createReview(command, userId, orderId);
     }
 

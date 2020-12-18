@@ -12,6 +12,4 @@ public class OrderDto {
     private String productName;
     private String address;
 
- {
-    }
 }

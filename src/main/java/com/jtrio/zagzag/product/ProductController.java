@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -20,8 +21,8 @@ public class ProductController {
         return productService.create(product);
     }
 
- /*   @GetMapping
-    public List<Product> inquiryByCategory(@RequestParam Long categoryID){
+    @GetMapping
+    public List<Product> inquiryByCategory(@RequestParam Long categoryID) {
         return productService.inquiryByCategory(categoryID);
-    }*/
+    }
 }
