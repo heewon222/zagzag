@@ -7,18 +7,25 @@ import com.jtrio.zagzag.model.User;
 import lombok.Data;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class ReviewCommand {
 
     @Data
     public static class CreateReview {  //유저+상품 둘다필요
+        @NotBlank
         private String contents;
         private String image;
         @Max(10)
+        @Min(1)
         private byte productScore;
         @Max(10)
+        @Min(1)
         private byte deliveryScore;
+        @NotBlank
+        private Long orderId;
 
         public Review toReview(User user, ProductOrder productOrder) {
             Review reviews = new Review();

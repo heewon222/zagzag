@@ -4,6 +4,7 @@ import com.jtrio.zagzag.model.Category;
 import com.jtrio.zagzag.model.Product;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
@@ -14,10 +15,11 @@ public class ProductCommand {
         @NotBlank
         private String name;
         @NotBlank
+        @Min(1)
         private int price;
         @NotBlank
         private String image;
-        private Category category;
+        @NotBlank
         private Long categoryID;
 
 
@@ -34,7 +36,7 @@ public class ProductCommand {
     }
 
  /*   @Data
-    public static class InquiryProduct{ //검색후정보읽기
+    public static class getProduct{ //검색후정보읽기
         @NotBlank
         private String name;
         private int price;

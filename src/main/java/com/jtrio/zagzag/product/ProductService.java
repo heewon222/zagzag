@@ -7,6 +7,7 @@ import com.jtrio.zagzag.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 
@@ -25,9 +26,9 @@ public class ProductService {
     }
 
     //카테고리별 조회
-    public List<Product> inquiryByCategory(Long categoryID) {
+    public List<Product> getByCategory(Long categoryId, Pageable pageable) {
 
-        return productRepository.findByCategoryId(categoryID);
+        return productRepository.findByCategoryId(categoryId, pageable);
     }
 
 

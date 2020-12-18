@@ -1,13 +1,12 @@
 package com.jtrio.zagzag.review;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("review")
+@RequestMapping("reviews")
 @RequiredArgsConstructor
 public class ReviewController {
     private final ReviewService reviewService;

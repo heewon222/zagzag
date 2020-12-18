@@ -3,10 +3,12 @@ package com.jtrio.zagzag.product;
 
 import com.jtrio.zagzag.model.Product;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.awt.print.Pageable;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,7 +24,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> inquiryByCategory(@RequestParam Long categoryID) {
-        return productService.inquiryByCategory(categoryID);
+    public List<Product> getByCategory(@RequestParam Long categoryId, Pageable pageable) {
+        return productService.getByCategory(categoryId, pageable);
     }
 }

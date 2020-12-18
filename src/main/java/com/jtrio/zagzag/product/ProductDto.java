@@ -10,5 +10,6 @@ public class ProductDto {
     private Integer price;
     private String description;
     private Long categoryId;
+    private int quantity;
 
 }

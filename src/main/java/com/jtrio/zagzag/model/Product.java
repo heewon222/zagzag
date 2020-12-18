@@ -21,6 +21,8 @@ public class Product {
     private int price;
     private String description;
     private String image;
+    private int quantity;
+
     @CreatedDate
     private LocalDateTime created;
     @LastModifiedDate
@@ -35,6 +37,7 @@ public class Product {
         productDto.setName(name);
         productDto.setPrice(price);
         productDto.setImage(image);
+        productDto.setQuantity(quantity);
         productDto.setDescription(description);
         productDto.setCategoryId(category.getId());
 

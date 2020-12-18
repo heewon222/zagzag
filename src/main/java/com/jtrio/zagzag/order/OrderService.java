@@ -2,6 +2,7 @@ package com.jtrio.zagzag.order;
 
 import com.jtrio.zagzag.category.CategoryRepository;
 import com.jtrio.zagzag.execption.OrderProductNotFoundException;
+import com.jtrio.zagzag.execption.ProductQuantityZeroException;
 import com.jtrio.zagzag.execption.UserNotFoundException;
 import com.jtrio.zagzag.model.Category;
 import com.jtrio.zagzag.model.Product;
@@ -20,11 +21,14 @@ public class OrderService {
     private final UserRepository userRepository;
 
     public OrderDto createOrder(OrderCommand command, Long userId) {
-        Product orderProduct = productRepository.findById(command.getProductId()).orElseThrow(() ->
+        Product product = productRepository.findById(command.getProductId()).orElseThrow(() ->
                 new OrderProductNotFoundException("주문상품 없음"));
+        if (product.getQuantity() == 0) {
+            throw new ProductQuantityZeroException("주문가능 수량 없음");
+        }
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("회원정보 없음"));
-        ProductOrder productOrder = orderRepository.save(command.toOrder(orderProduct, user));
+        ProductOrder productOrder = orderRepository.save(command.toOrder(product, user));
         return productOrder.toDto();
 
     }
