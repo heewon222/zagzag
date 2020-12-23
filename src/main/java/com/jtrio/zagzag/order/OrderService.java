@@ -43,8 +43,7 @@ public class OrderService {
     public List<ProductOrder> getOrder(Long userId, LocalDate localDate, Pageable pageable) {
         userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("회원정보 없음"));
-        List<ProductOrder> orders = orderRepository.findByUserId(userId, localDate, pageable);
-
-        return orders;
+        
+        return orderRepository.findByUserId(userId, localDate, pageable);
     }
 }
