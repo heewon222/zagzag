@@ -1,5 +1,6 @@
 package com.jtrio.zagzag.review;
 
+import com.jtrio.zagzag.model.Review;
 import lombok.Data;
 
 
@@ -15,4 +16,17 @@ public class ReviewDto {
     private String userName;
     private String productName;
 
+    public static ReviewDto toDto(Review review) {
+        ReviewDto reviewDto = new ReviewDto();
+        reviewDto.setOrderId(review.getProductOrder().getId());
+        reviewDto.setUserId(review.getUser().getId());
+        reviewDto.setProductId(review.getProduct().getId());
+        reviewDto.setContents(review.getContents());
+        reviewDto.setImage(review.getImage());
+        reviewDto.setDeliveryScore(review.getDeliveryScore());
+        reviewDto.setProductScore(review.getScore());
+
+        return reviewDto;
+
+    }
 }

@@ -19,8 +19,10 @@ public class Review {
     private Long id;
     private String contents;
     private String image;
-    private byte productScore;
+    private byte score;
+    private byte totalScore;
     private byte deliveryScore;
+    private byte average;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -42,17 +44,4 @@ public class Review {
     @LastModifiedDate
     private LocalDateTime updated;
 
-    public ReviewDto toDto() {
-        ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setOrderId(productOrder.getId());
-        reviewDto.setUserId(user.getId());
-        reviewDto.setProductId(product.getId());
-        reviewDto.setContents(contents);
-        reviewDto.setImage(image);
-        reviewDto.setDeliveryScore(deliveryScore);
-        reviewDto.setProductScore(productScore);
-
-        return reviewDto;
-
-    }
 }

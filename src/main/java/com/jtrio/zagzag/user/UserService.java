@@ -16,7 +16,7 @@ public class UserService {
             throw new EmailDuplicationException("email 중복");
         }
         User user = userRepository.save(command.toUser());
-        return user.toDto();
+        return UserDto.toDto(user);
     }
 
     public UserDto update(UserCommand.UpdateUser command, Long id) {
@@ -25,6 +25,6 @@ public class UserService {
 
         user = userRepository.save(command.toUser(user));
 
-        return user.toDto();
+        return UserDto.toDto(user);
     }
 }

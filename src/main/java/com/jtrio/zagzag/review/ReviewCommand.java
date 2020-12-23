@@ -1,6 +1,5 @@
 package com.jtrio.zagzag.review;
 
-import com.jtrio.zagzag.model.Product;
 import com.jtrio.zagzag.model.ProductOrder;
 import com.jtrio.zagzag.model.Review;
 import com.jtrio.zagzag.model.User;
@@ -20,7 +19,7 @@ public class ReviewCommand {
         private String image;
         @Max(10)
         @Min(1)
-        private byte productScore;
+        private byte score;
         @Max(10)
         @Min(1)
         private byte deliveryScore;
@@ -34,10 +33,27 @@ public class ReviewCommand {
             reviews.setUser(user);
             reviews.setProduct(productOrder.getProduct());//주문상품..오더에 있는걸 가져와야하나?
             reviews.setDeliveryScore(deliveryScore);
-            reviews.setProductScore(productScore);
+            reviews.setScore(score);
             reviews.setProductOrder(productOrder);
 
             return reviews;
         }
     }
+
+   /* @Data
+    public static class getProductScore {//점수계산
+        @NotBlank
+        private byte score; //받은 점수
+        private byte totalScore; //총 점수
+        private byte average; //평균
+
+        public Review toOrder(Review review) {
+            totalScore = (byte) (totalScore + score);
+            review.setScore(score);
+            review.setTotalScore(totalScore);
+            review.setAverage(average);
+
+            return review;
+        }
+    }*/
 }

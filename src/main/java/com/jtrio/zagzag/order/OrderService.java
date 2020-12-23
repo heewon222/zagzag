@@ -13,6 +13,11 @@ import com.jtrio.zagzag.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class OrderService {
@@ -29,8 +34,17 @@ public class OrderService {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("회원정보 없음"));
         ProductOrder productOrder = orderRepository.save(command.toOrder(product, user));
-        return productOrder.toDto();
+        return OrderDto.toDto(productOrder);
+
 
     }
 
+    //주문조회(기간..?)
+    public List<ProductOrder> getOrder(Long userId, LocalDate localDate, Pageable pageable) {
+        userRepository.findById(userId).orElseThrow(() ->
+                new UserNotFoundException("회원정보 없음"));
+        List<ProductOrder> orders = orderRepository.findByUserId(userId, localDate, pageable);
+
+        return orders;
+    }
 }

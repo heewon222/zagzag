@@ -36,6 +36,6 @@ public class ReviewService {
 
         Review review = reviewRepository.save(command.toReview(user, productOrder));
 
-        return review.toDto();
+        return ReviewDto.toDto(review);
     }
 }

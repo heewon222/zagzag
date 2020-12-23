@@ -35,6 +35,7 @@ public class ProductCommand {
         }
     }
 
+
  /*   @Data
     public static class getProduct{ //검색후정보읽기
         @NotBlank

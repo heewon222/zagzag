@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class ProductOrder {
     private String address;
     private String productName;
     @CreatedDate
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime created;
     @LastModifiedDate
     private LocalDateTime updated;
@@ -32,15 +34,5 @@ public class ProductOrder {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public OrderDto toDto() {
-        OrderDto orderDto = new OrderDto();
-        orderDto.setOrderPrice(price);
-        orderDto.setProductName(productName);
-        orderDto.setAddress(address);
-        orderDto.setProductId(product.getId());
-        orderDto.setUserId(user.getId());
-
-        return orderDto;
-    }
 
 }

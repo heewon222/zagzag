@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Entity
 @Data
@@ -32,15 +32,4 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public ProductDto toDto() {
-        ProductDto productDto = new ProductDto();
-        productDto.setName(name);
-        productDto.setPrice(price);
-        productDto.setImage(image);
-        productDto.setQuantity(quantity);
-        productDto.setDescription(description);
-        productDto.setCategoryId(category.getId());
-
-        return productDto;
-    }
 }

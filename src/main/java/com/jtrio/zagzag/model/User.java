@@ -28,14 +28,4 @@ public class User {
     private LocalDateTime updated;
 
 
-    public UserDto toDto() {
-        UserDto userDto = new UserDto();
-
-        userDto.setAddress(address);
-        userDto.setName(name);
-        userDto.setGender(gender);
-        userDto.setEmail(email);
-
-        return userDto;
-    }
 }
