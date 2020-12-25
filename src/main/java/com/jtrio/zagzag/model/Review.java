@@ -44,4 +44,13 @@ public class Review {
     @LastModifiedDate
     private LocalDateTime updated;
 
+    public byte averageScore(List<Review> reviews) {
+        int sumProductScore = 0;
+
+        for (Review review : reviews) {
+            byte score = review.getScore();
+            sumProductScore += score;
+        }
+        return (byte) (sumProductScore / reviews.size());
+    }
 }

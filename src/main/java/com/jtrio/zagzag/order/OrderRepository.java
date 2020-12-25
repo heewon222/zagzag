@@ -11,5 +11,5 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<ProductOrder, Long> {
-    List<ProductOrder> findByUserId(Long userId, LocalDate localDate, Pageable pageable);
+    List<OrderDto> findByUserIdAndLocalDate(Long userId, LocalDate localDate, Pageable pageable);
 }

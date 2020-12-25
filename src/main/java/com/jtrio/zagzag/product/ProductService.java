@@ -5,6 +5,8 @@ import com.jtrio.zagzag.execption.CategoryNotFoundException;
 import com.jtrio.zagzag.execption.ProductNotFoundException;
 import com.jtrio.zagzag.model.Category;
 import com.jtrio.zagzag.model.Product;
+import com.jtrio.zagzag.model.Review;
+import com.jtrio.zagzag.review.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ReviewRepository reviewRepository;
 
     //상품 저장
     public ProductDto create(ProductCommand.CreateProduct command) {
@@ -27,7 +30,7 @@ public class ProductService {
     }
 
     //카테고리별 조회
-    public List<Product> getByCategory(Long categoryId, Pageable pageable) {
+    public List<ProductDto> getByCategory(Long categoryId, Pageable pageable) {
 
         return productRepository.findByCategoryId(categoryId, pageable);
     }

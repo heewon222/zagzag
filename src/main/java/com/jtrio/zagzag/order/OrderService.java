@@ -40,10 +40,11 @@ public class OrderService {
     }
 
     //주문조회(기간..?)
-    public List<ProductOrder> getOrder(Long userId, LocalDate localDate, Pageable pageable) {
+    public List<OrderDto> getOrder(Long userId, LocalDate localDate, Pageable pageable) {
         userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("회원정보 없음"));
-        List<ProductOrder> orders = orderRepository.findByUserId(userId, localDate, pageable);
+        List<OrderDto> orders = orderRepository.findByUserIdAndLocalDate(userId, localDate, pageable);
+
 
         return orders;
     }

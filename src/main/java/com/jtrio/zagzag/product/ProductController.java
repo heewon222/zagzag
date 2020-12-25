@@ -24,7 +24,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getByCategory(@RequestParam Long categoryId, Pageable pageable) {
+    public List<ProductDto> getByCategory(@RequestParam Long categoryId, Pageable pageable) {
         return productService.getByCategory(categoryId, pageable);
     }
 

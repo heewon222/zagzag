@@ -8,6 +8,8 @@ import lombok.Data;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class ReviewCommand {
@@ -17,6 +19,7 @@ public class ReviewCommand {
         @NotBlank
         private String contents;
         private String image;
+        private List<Review> reviews;
         @Max(10)
         @Min(1)
         private byte score;
@@ -39,21 +42,4 @@ public class ReviewCommand {
             return reviews;
         }
     }
-
-   /* @Data
-    public static class getProductScore {//점수계산
-        @NotBlank
-        private byte score; //받은 점수
-        private byte totalScore; //총 점수
-        private byte average; //평균
-
-        public Review toOrder(Review review) {
-            totalScore = (byte) (totalScore + score);
-            review.setScore(score);
-            review.setTotalScore(totalScore);
-            review.setAverage(average);
-
-            return review;
-        }
-    }*/
 }

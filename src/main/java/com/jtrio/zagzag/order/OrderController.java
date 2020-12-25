@@ -10,8 +10,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Controller
-@RequestMapping("order")
+@RestController
+@RequestMapping("orders")
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
@@ -22,7 +22,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<ProductOrder> getOrder(@RequestParam Long userId, @RequestParam LocalDate localDate, Pageable pageable) {
+    public List<OrderDto> getOrder(@RequestParam Long userId, @RequestParam LocalDate localDate, Pageable pageable) {
         return orderService.getOrder(userId, localDate, pageable);
     }
 }
