@@ -3,6 +3,9 @@ package com.jtrio.zagzag.review;
 import com.jtrio.zagzag.model.Review;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
 public class ReviewDto {

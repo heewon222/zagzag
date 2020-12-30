@@ -12,7 +12,7 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/users")
     public UserDto join(@Valid @RequestBody UserCommand.CreateUser user) {
         return userService.join(user);
     }

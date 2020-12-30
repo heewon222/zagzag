@@ -19,7 +19,6 @@ public class ReviewCommand {
         @NotBlank
         private String contents;
         private String image;
-        private List<Review> reviews;
         @Max(10)
         @Min(1)
         private byte score;
