@@ -45,7 +45,6 @@ public class OrderService {
                 new UserNotFoundException("회원정보 없음"));
         List<OrderDto> orders = orderRepository.findByUserIdAndLocalDate(userId, localDate, pageable);
 
-
         return orders;
     }
 }

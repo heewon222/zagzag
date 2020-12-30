@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -22,6 +23,7 @@ public class Product {
     private String description;
     private String image;
     private int quantity;
+    private byte totalScore;
 
     @CreatedDate
     private LocalDateTime created;
@@ -32,4 +34,13 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    public byte averageScore(List<Review> reviews) {
+        int sumProductScore = 0;
+
+        for (Review review : reviews) {
+            byte score = review.getScore();
+            sumProductScore += score;
+        }
+        return (byte) (sumProductScore / reviews.size());
+    }
 }

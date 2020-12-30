@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+
 
 @RequiredArgsConstructor
 @Service
@@ -39,7 +39,7 @@ public class ReviewService {
         Product product = productRepository.findById(productOrder.getProduct().getId()).orElseThrow(() ->
                 new ProductNotFoundException("상품없음"));
 
-        review.setTotalScore(review.averageScore(command.getReviews()));//리뷰갯수?
+        product.setTotalScore(product.averageScore(review.getReviews())); //리뷰갯수?
 
         return ReviewDto.toDto(review);
     }
