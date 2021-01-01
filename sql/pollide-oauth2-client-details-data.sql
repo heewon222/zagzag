@@ -20,7 +20,7 @@
 
 LOCK TABLES `oauth_client_details` WRITE;
 /*!40000 ALTER TABLE `oauth_client_details` DISABLE KEYS */;
-INSERT INTO `oauth_client_details` VALUES ('shop','shop-api','{noops}shop-secret','read,write','authorization_code,password,client_credentials,implict,refresh_token',NULL,'USER',36000000,360000,'{}',NULL);/*!40000 ALTER TABLE `oauth_client_details` ENABLE KEYS */;
+INSERT INTO `oauth_client_details` VALUES ('shop','shop-api','{noop}shop-secret','read,write','authorization_code,password,client_credentials,implict,refresh_token',NULL,'USER',36000000,360000,'{}',NULL);/*!40000 ALTER TABLE `oauth_client_details` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
