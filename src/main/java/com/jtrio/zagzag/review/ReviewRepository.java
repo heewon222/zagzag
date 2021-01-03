@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-    @Query("SELECT avg(totalScore) from Review where product = :prduct")
+    @Query("SELECT avg(totalScore) from Review where product.id=:Id")//id로..
     byte avgProductTotalScore(Long Id);
 }
