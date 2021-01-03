@@ -24,9 +24,6 @@ public class Review {
     private byte deliveryScore;
     private byte average;
 
-    @ManyToMany
-    private List<Review> reviews;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

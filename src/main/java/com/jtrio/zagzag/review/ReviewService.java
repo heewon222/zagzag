@@ -39,8 +39,8 @@ public class ReviewService {
         Product product = productRepository.findById(productOrder.getProduct().getId()).orElseThrow(() ->
                 new ProductNotFoundException("상품없음"));
 
-        product.setTotalScore(product.averageScore(review.getReviews())); //리뷰갯수?
-
+        //평점
+        product.setTotalScore(reviewRepository.avgProductTotalScore(product.getId()));
         return ReviewDto.toDto(review);
     }
 }
