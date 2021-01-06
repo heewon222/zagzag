@@ -23,6 +23,7 @@ public class User {
     private String name;
     private String address;
     private Gender gender;
+    @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.USER;
     @CreatedDate
     private LocalDateTime created;
