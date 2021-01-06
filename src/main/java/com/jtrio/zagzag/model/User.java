@@ -1,6 +1,7 @@
 package com.jtrio.zagzag.model;
 
 import com.jtrio.zagzag.enums.Gender;
+import com.jtrio.zagzag.enums.UserRole;
 import com.jtrio.zagzag.user.UserDto;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,20 +23,12 @@ public class User {
     private String name;
     private String address;
     private Gender gender;
+    @Enumerated(EnumType.STRING)
+    private UserRole role = UserRole.USER;
     @CreatedDate
     private LocalDateTime created;
     @LastModifiedDate
     private LocalDateTime updated;
 
 
-    public UserDto toDto() {
-        UserDto userDto = new UserDto();
-
-        userDto.setAddress(address);
-        userDto.setName(name);
-        userDto.setGender(gender);
-        userDto.setEmail(email);
-
-        return userDto;
-    }
 }
