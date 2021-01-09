@@ -1,6 +1,7 @@
 package com.jtrio.zagzag.security;
 
 import com.jtrio.zagzag.model.User;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+@Data
 @RequiredArgsConstructor
 public class SecurityUser implements UserDetails {
     private static final String ROLE_PREFIX = "ROLE_";

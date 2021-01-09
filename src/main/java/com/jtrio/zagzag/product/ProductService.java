@@ -5,8 +5,6 @@ import com.jtrio.zagzag.execption.CategoryNotFoundException;
 import com.jtrio.zagzag.execption.ProductNotFoundException;
 import com.jtrio.zagzag.model.Category;
 import com.jtrio.zagzag.model.Product;
-import com.jtrio.zagzag.model.Review;
-import com.jtrio.zagzag.review.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +18,6 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
-    private final ReviewRepository reviewRepository;
 
     //상품 저장
     @Transactional
