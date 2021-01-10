@@ -1,12 +1,7 @@
 package com.jtrio.zagzag.order;
 
 import com.jtrio.zagzag.model.ProductOrder;
-import com.jtrio.zagzag.model.User;
-import com.jtrio.zagzag.security.SecurityUser;
-import com.jtrio.zagzag.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,23 +15,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
-    private final UserService userService;
 
     @PostMapping
-    public OrderDto createOrder(@RequestBody OrderCommand command, @AuthenticationPrincipal SecurityUser securityUser) {
-        User user = userService.findById(securityUser.getUser().getId());
-        return orderService.createOrder(command, user);
+    public OrderDto createOrder(@RequestBody OrderCommand command, @RequestParam Long userId) {
+        return orderService.createOrder(command, userId);
     }
 
     @GetMapping
-    public List<OrderDto> getOrder(@AuthenticationPrincipal SecurityUser securityUser, @RequestParam LocalDate localDate, Pageable pageable, @PathVariable Long productId) {
-        User user = userService.findById(securityUser.getUser().getId());
-        return orderService.getOrder(user, localDate, pageable, productId);
-    }
-
-    @DeleteMapping("/{id}")
-    public OrderDto deleteOrder(@AuthenticationPrincipal SecurityUser securityUser, @PathVariable Long id) {
-        User user = userService.findById(securityUser.getUser().getId());
-        return orderService.deleteOrder(user,id);
+    public List<OrderDto> getOrder(@RequestParam Long userId, @RequestParam LocalDate localDate, Pageable pageable) {
+        return orderService.getOrder(userId, localDate, pageable);
     }
 }

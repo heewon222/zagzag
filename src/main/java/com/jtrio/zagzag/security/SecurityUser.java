@@ -10,8 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-@Data
+
 @RequiredArgsConstructor
+@Data
 public class SecurityUser implements UserDetails {
     private static final String ROLE_PREFIX = "ROLE_";
     private final User user;

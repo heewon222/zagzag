@@ -1,5 +1,6 @@
 package com.jtrio.zagzag.qna;
 
+import com.jtrio.zagzag.execption.NotAllowedDeleteException;
 import com.jtrio.zagzag.execption.OrderProductNotFoundException;
 import com.jtrio.zagzag.execption.QnaNotFoundException;
 import com.jtrio.zagzag.execption.UserNotFoundException;
@@ -61,9 +62,9 @@ public class QnaService {
     public QnaDto deleteQna(User user, Long id) {
         Qna qna = qnaRepository.findById(id).orElseThrow(() ->
                 new QnaNotFoundException("QnA조회 없음"));
-        /*if (qna.getUser().equals(user)) {
-            //삭제...?
-        }*/
+        if (!qna.getUser().equals(user)) {
+            throw new NotAllowedDeleteException("삭제 권한 없음");
+        }
 
         return QnaDto.toDto(qna);
     }

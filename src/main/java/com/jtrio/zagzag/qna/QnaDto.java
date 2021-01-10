@@ -15,7 +15,7 @@ public class QnaDto {
     public static QnaDto toDto(Qna qna) {
         QnaDto qnaDto = new QnaDto();
         qnaDto.setUserName(qna.getUser().getEmail());
-        qnaDto.setContents(qna.getContents());
+        qnaDto.setContents(qna.getContent());
         qnaDto.setSecret(qna.isSecret());
         qnaDto.setCreated(qna.getCreated());
 

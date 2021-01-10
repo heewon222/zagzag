@@ -21,7 +21,7 @@ public class QnaCommand {
         Qna qna = new Qna();
         qna.setUser(user);
         qna.setProduct(product);
-        qna.setContents(contents);
+        qna.setContent(contents);
         qna.setSecret(secret);
 
         return qna;
@@ -30,7 +30,7 @@ public class QnaCommand {
     public Qna UpdateQna(User user, Qna qna) {
         qna.setUser(user);
         qna.setProduct(qna.getProduct());
-        qna.setContents(contents);
+        qna.setContent(contents);
         qna.setSecret(secret);
 
         return qna;

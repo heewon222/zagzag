@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@EntityListeners(value = {AuditingEntityListener.class})
 @Data
+@EntityListeners(value = {AuditingEntityListener.class})
 public class Qna {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private boolean secret;
-    private String contents;
+    private String content;
     @CreatedDate
     private LocalDateTime created;
     @LastModifiedDate
