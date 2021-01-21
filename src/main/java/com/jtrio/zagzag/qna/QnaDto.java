@@ -14,7 +14,9 @@ public class QnaDto {
 
     public static QnaDto toDto(Qna qna) {
         QnaDto qnaDto = new QnaDto();
-        qnaDto.setUserName(qna.getUser().getEmail());
+        String nickname = qna.getUser().getEmail();
+        nickname = nickname.replaceAll("(?<=.)[^@\n](?=[^@\n]*?[^@\n]@)|(?:(?<=@.)|(?!^)\\G(?=[^@\n]*$)).(?=.*[^@\n]\\.)","*");
+        qnaDto.setUserName(nickname);
         qnaDto.setContents(qna.getContent());
         qnaDto.setSecret(qna.isSecret());
         qnaDto.setCreated(qna.getCreated());

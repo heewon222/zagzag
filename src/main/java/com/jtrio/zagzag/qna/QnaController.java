@@ -20,29 +20,21 @@ public class QnaController {
 
     @PostMapping
     public QnaDto createQna(@Valid @RequestBody QnaCommand qnaCommand, @AuthenticationPrincipal SecurityUser securityUser) {
-        User user = userService.findSecurityUserById(securityUser.getUser().getId());
-
-        return qnaService.createQna(qnaCommand, user);
+        return qnaService.createQna(qnaCommand, securityUser.getUserId());
     }
 
     @GetMapping
     public List<QnaDto> readQna(@AuthenticationPrincipal SecurityUser securityUser, @RequestParam Long productId, Pageable pageable) {
-        User user = userService.findSecurityUserById(securityUser.getUser().getId());
-
-        return qnaService.readQna(user, productId, pageable);
+        return qnaService.readQna(securityUser.getUserId(), productId, pageable);
     }
 
     @PutMapping("/{id}")
     public QnaDto updateQna(@RequestBody Long id, @AuthenticationPrincipal SecurityUser securityUser, @Valid @RequestBody QnaCommand qnaCommand) {
-        User user = userService.findSecurityUserById(securityUser.getUser().getId());
-
-        return qnaService.updateQna(id, qnaCommand, user);
+        return qnaService.updateQna(id, qnaCommand, securityUser.getUserId());
     }
 
     @DeleteMapping("/{id}")
     public QnaDto deleteQna(@AuthenticationPrincipal SecurityUser securityUser, @PathVariable Long id) {
-        User user = userService.findSecurityUserById(securityUser.getUser().getId());
-
-        return qnaService.deleteQna(user, id);
+        return qnaService.deleteQna(securityUser.getUserId(), id);
     }
 }

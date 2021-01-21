@@ -27,7 +27,8 @@ public class QnaService {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
 
-    public QnaDto createQna(QnaCommand qnaCommand, User user) {
+    public QnaDto createQna(QnaCommand qnaCommand, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
         Product product = productRepository.findById(qnaCommand.getProductId()).orElseThrow(() ->
                 new OrderProductNotFoundException("주문상품 없음"));
         userRepository.findById(user.getId()).orElseThrow(() ->
@@ -37,10 +38,11 @@ public class QnaService {
         return QnaDto.toDto(qna);
     }
 
-    public List<QnaDto> readQna(User user, Long orderId, Pageable pageable) {
-        orderRepository.findById(orderId).orElseThrow(() ->
+    public List<QnaDto> readQna(Long userId, Long productId, Pageable pageable) {
+        User user = userRepository.findById(userId).orElseThrow();
+        productRepository.findById(productId).orElseThrow(() ->
                 new OrderProductNotFoundException("주문상품 없음"));
-        List<Qna> qnas = qnaRepository.findByProductOrderId(orderId, pageable);
+        List<Qna> qnas = qnaRepository.findByProductId(productId, pageable);
         List<QnaDto> qnaDtos = new ArrayList<>();
 
         for (Qna qna : qnas) {
@@ -51,15 +53,20 @@ public class QnaService {
         return qnaDtos;
     }
 
-    public QnaDto updateQna(Long id, QnaCommand qnaCommand, User user) {
+    public QnaDto updateQna(Long id, QnaCommand qnaCommand, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
         Qna qna = qnaRepository.findById(id).orElseThrow(() ->
                 new QnaNotFoundException("QnA 없음"));
+        if (!qna.getUser().equals(user)) {
+            throw new NotAllowedDeleteException("삭제 권한 없음");
+        }
         qnaRepository.save(qnaCommand.UpdateQna(user, qna));
 
         return QnaDto.toDto(qna);
     }
 
-    public QnaDto deleteQna(User user, Long id) {
+    public QnaDto deleteQna(Long userId, Long id) {
+        User user = userRepository.findById(userId).orElseThrow();
         Qna qna = qnaRepository.findById(id).orElseThrow(() ->
                 new QnaNotFoundException("QnA조회 없음"));
         if (!qna.getUser().equals(user)) {

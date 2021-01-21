@@ -34,13 +34,4 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public byte averageScore(List<Review> reviews) {
-        int sumProductScore = 0;
-
-        for (Review review : reviews) {
-            byte score = review.getScore();
-            sumProductScore += score;
-        }
-        return (byte) (sumProductScore / reviews.size());
-    }
 }

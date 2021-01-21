@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface QnaRepository extends JpaRepository<Qna, Long> {
-    List<Qna> findByProductOrderId(Long orderId, Pageable pageable);
+    List<Qna> findByProductId(Long productId, Pageable pageable);
 }
